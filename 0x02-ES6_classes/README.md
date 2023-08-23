@@ -1,1 +1,1 @@
-my solutions for project 0x02-ES6_classes
+Readme for 0x02. ES6 classes

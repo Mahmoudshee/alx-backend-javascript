@@ -1,5 +1,3 @@
-import Currency from "./3-currency.js";
-
 export default class Pricing {
   constructor(amount, currency) {
     this._amount = amount;
@@ -10,24 +8,23 @@ export default class Pricing {
     return this._amount;
   }
 
-  set amount(newAmount) {
-    this._amount = newAmount;
+  set amount(a) {
+    this._amount = a;
   }
 
   get currency() {
     return this._currency;
   }
 
-  set currency(newCurrency) {
-    this._currency = newCurrency;
+  set currency(c) {
+    this._currency = c;
   }
 
   displayFullPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+    return `${this.amount} ${this.currency._name} (${this.currency._code})`;
   }
 
   static convertPrice(amount, conversionRate) {
-    return amount * conversionRate;
+    return (amount * conversionRate);
   }
 }
-
