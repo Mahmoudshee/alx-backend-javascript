@@ -1,37 +1,36 @@
-// 10-api/api.js
 const express = require('express');
+
 const app = express();
+const PORT = 7865;
 
-const port = 7865;
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`API available on localhost port ${port}`);
-});
-
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Welcome to the payment system');
 });
 
 app.get('/cart/:id(\\d+)', (req, res) => {
-  const cartId = req.params.id;
-  res.send(`Payment methods for cart ${cartId}`);
+  const id = req.params.id;
+
+  res.send(`Payment methods for cart ${id}`);
 });
 
-app.get('/available_payments', (req, res) => {
-  res.json({
-    payment_methods: {
-      credit_cards: true,
-      paypal: false
-    }
-  });
+app.get('/available_payments', (_req, res) => {
+  res.json({ payment_methods: { credit_cards: true, paypal: false } });
 });
 
 app.post('/login', (req, res) => {
-  const { userName } = req.body;
-  res.send(`Welcome ${userName}`);
+  let username = '';
+
+  if (req.body) {
+    username = req.body.userName;
+  }
+
+  res.send(`Welcome ${username}`);
 });
 
-app.use('*', (req, res) => {
-  res.status(404).send('Not Found');
+app.listen(PORT, () => {
+  console.log(`API available on localhost port ${PORT}`);
 });
 
+module.exports = app;
